@@ -1,4 +1,4 @@
-# 👋 Hi there, I'm devTamTam!
+
 
 <div align="center">
   
@@ -21,7 +21,7 @@ Im just messing around. I like making stuff.
 | 📚 **Qiita Articles** | Technical articles and tutorials | [![Qiita](https://img.shields.io/badge/Qiita-55C500?style=for-the-badge&logo=qiita&logoColor=white)](https://qiita.com/devtamtam) |
 | 🐙 **GitHub Profile** | Open source projects and contributions | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/devtamtam) |
 | ⚡ **Zenn Publications** | Tech articles and insights | [![Zenn](https://img.shields.io/badge/Zenn-3EA8FF?style=for-the-badge&logo=zenn&logoColor=white)](https://zenn.dev/devtamtam) |
-| 🗨️ **Discord** | Chat and connect with me | [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/eZNHMMaD) |
+| 🗨️ **Discord** | Chat and connect with me | [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/fxx67btA) |
 
 </div>
 
