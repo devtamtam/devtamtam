@@ -1,4 +1,4 @@
-
+![スクリーンショット (153)](https://github.com/user-attachments/assets/87111e88-dcd9-485f-9545-92f43cc864fb)
 
 <div align="center">
   
@@ -18,7 +18,7 @@ Experience in Inventor Pro, Fusion 360, 3D printing
 
 | Platform | Description | Link |
 |----------|-------------|------|
-| 💬 **TamTam Forum** | Academic Forum for future engineers | [![Forum](https://img.shields.io/badge/Forum-FF6B6B?style=for-the-badge&logo=discourse&logoColor=white)](/https://devtamtam.netlify.app/tamtamforum/) |
+| 💬 **TamTam Forum** | Academic Forum for future engineers | [![Forum](https://img.shields.io/badge/Forum-FF6B6B?style=for-the-badge&logo=discourse&logoColor=white)](https://devtamtam.netlify.app/tamtamforum/index.html) |
 | 📝 **Note Blog** | Personal blog and articles | [![Note](https://img.shields.io/badge/Note-41C9B4?style=for-the-badge&logo=note&logoColor=white)](https://note.com/kei_pineapple) |
 | 📚 **Qiita Articles** | Technical articles and tutorials | [![Qiita](https://img.shields.io/badge/Qiita-55C500?style=for-the-badge&logo=qiita&logoColor=white)](https://qiita.com/devtamtam) |
 | 🐙 **GitHub Profile** | Open source projects and contributions | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/devtamtam) |
