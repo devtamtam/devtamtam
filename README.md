@@ -10,6 +10,8 @@
 
 Im just messing around. I like making stuff.
 
+Experience in Inventor Pro, Fusion 360, 3D printing
+
 ## 🔗 Connect With Me
 
 <div align="center">
