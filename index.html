@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://avatars.githubusercontent.com/u/115604773?v=4" type="image/png">
-
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/115604773?v=4" type="image/png">
     <title>Devtamtam Links</title>
     <style>
         :root {
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
+            --primary-glass: rgba(255, 255, 255, 0.15);
+            --secondary-glass: rgba(255, 255, 255, 0.08);
+            --edge-glass: rgba(255, 255, 255, 0.25);
             --text-primary: #1f2937;
             --text-secondary: #6b7280;
-            --accent-color: #2563eb;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+            --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow-glass: 0 8px 32px rgba(31, 38, 135, 0.37);
+            --shadow-hover: 0 15px 35px rgba(31, 38, 135, 0.2);
+            --border-glass: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #111827;
-                --card-bg: #1f2937;
+                --primary-glass: rgba(255, 255, 255, 0.1);
+                --secondary-glass: rgba(255, 255, 255, 0.05);
+                --edge-glass: rgba(255, 255, 255, 0.15);
                 --text-primary: #f3f4f6;
                 --text-secondary: #d1d5db;
+                --border-glass: 1px solid rgba(255, 255, 255, 0.1);
             }
         }
 
@@ -35,53 +39,133 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-color);
+            background: #0f0f23;
             color: var(--text-primary);
             min-height: 100vh;
             padding: 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            overflow-x: hidden;
         }
 
+        /* Enhanced Pattern Background */
+        #backgroundCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        /* Gradient Overlay Pattern */
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(102, 126, 234, 0.1) 0%, 
+                rgba(118, 75, 162, 0.1) 25%,
+                rgba(240, 147, 251, 0.1) 50%,
+                rgba(79, 172, 254, 0.1) 75%,
+                rgba(0, 242, 254, 0.1) 100%);
+            z-index: -1;
+            animation: gradientShift 15s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Glass Header with 3D Edge Effect */
         .header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 3;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .link-list {
-            list-style: none;
-            width: 100%;
-            max-width: 800px;
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .link-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 1.2rem;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-sm);
+        .glass-container {
+            background: var(--primary-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: var(--border-glass);
+            padding: 2rem;
+            box-shadow: var(--shadow-glass);
             position: relative;
             overflow: hidden;
         }
 
+        .glass-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        }
+
+        .glass-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 0;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Enhanced Link Cards with Layered Glass Effect */
+        .link-list {
+            list-style: none;
+            width: 100%;
+            max-width: 900px;
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            animation: fadeInUp 1s ease-out 0.2s both;
+            position: relative;
+            z-index: 2;
+        }
+
+        .link-card {
+            background: var(--primary-glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: var(--border-glass);
+            border-radius: 18px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-glass);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        /* Layered Glass Effect */
         .link-card::before {
             content: '';
             position: absolute;
@@ -89,54 +173,142 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+            background: var(--secondary-glass);
+            border-radius: 18px;
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+
+        /* 3D Glass Edge Effect */
+        .link-card::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--edge-glass);
+            backdrop-filter: blur(8px) brightness(120%);
+            border-radius: 0 0 18px 18px;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: all 0.4s ease;
             z-index: 1;
         }
 
         .link-card:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            background: var(--secondary-glass);
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
         .link-card:hover::before {
-            opacity: 0.1;
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.1), 
+                rgba(240, 147, 251, 0.1));
+        }
+
+        .link-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Enhanced Favicon with Glass Ring */
+        .favicon-container {
+            position: relative;
+            margin-right: 1.5rem;
+            z-index: 3;
+        }
+
+        .favicon-container::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .link-card:hover .favicon-container::before {
+            opacity: 0.3;
+            transform: scale(1.1);
         }
 
         .favicon {
             width: 42px;
             height: 42px;
-            margin-right: 1.25rem;
             border-radius: 12px;
             position: relative;
-            z-index: 2;
-            transition: transform 0.3s ease;
+            z-index: 3;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .link-card:hover .favicon {
-            transform: scale(1.1);
+            transform: scale(1.15) rotate(2deg);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
 
         .link-text {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
             position: relative;
-            z-index: 2;
+            z-index: 3;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .domain {
             font-size: 0.9rem;
             color: var(--text-secondary);
-            margin-top: 0.25rem;
             position: relative;
-            z-index: 2;
+            z-index: 3;
+            opacity: 0.8;
         }
 
-        @keyframes fadeIn {
+        /* Floating Particles Animation */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% { 
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(-10vh) rotate(180deg);
+            }
+        }
+
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -144,27 +316,183 @@
             }
         }
 
-        @media (max-width: 600px) {
-            body {
-                padding: 1rem;
-            }
-            
-            .link-list {
-                grid-template-columns: 1fr;
-            }
+        /* Enhanced Card Animation Stagger */
+        .link-card:nth-child(1) { animation-delay: 0.1s; }
+        .link-card:nth-child(2) { animation-delay: 0.2s; }
+        .link-card:nth-child(3) { animation-delay: 0.3s; }
+        .link-card:nth-child(4) { animation-delay: 0.4s; }
+        .link-card:nth-child(5) { animation-delay: 0.5s; }
 
-            .header h1 {
-                font-size: 2rem;
-            }
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            .link-list { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2.2rem; }
+            .glass-container { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
+    <canvas id="backgroundCanvas"></canvas>
+    <div class="gradient-overlay"></div>
+    <div class="floating-particles" id="particles"></div>
+    
     <header class="header">
-        <h1>devTamTam Links</h1>
+        <div class="glass-container">
+            <h1>devTamTam Links</h1>
+        </div>
     </header>
+    
     <ul class="link-list" id="linkContainer"></ul>
+    
     <script>
+        // Enhanced Pattern Background with Multiple Layers
+        class EnhancedBlurredBackground {
+            constructor(canvasId) {
+                this.canvas = document.getElementById(canvasId);
+                this.ctx = this.canvas.getContext('2d');
+                this.shapes = [];
+                this.gradientPalettes = [
+                    [
+                        {colors: ['#667eea', '#764ba2'], name: 'purple-blue'},
+                        {colors: ['#f093fb', '#f5576c'], name: 'pink-red'},
+                        {colors: ['#4facfe', '#00f2fe'], name: 'blue-cyan'},
+                        {colors: ['#43e97b', '#38f9d7'], name: 'green-mint'}
+                    ],
+                    [
+                        {colors: ['#fa709a', '#fee140'], name: 'pink-yellow'},
+                        {colors: ['#a8edea', '#fed6e3'], name: 'mint-pink'},
+                        {colors: ['#d299c2', '#fef9d7'], name: 'lavender-cream'},
+                        {colors: ['#89f7fe', '#66a6ff'], name: 'cyan-blue'}
+                    ]
+                ];
+                
+                this.init();
+                this.animate();
+                this.createFloatingParticles();
+            }
+
+            init() {
+                this.resizeCanvas();
+                this.generateShapes();
+                window.addEventListener('resize', () => {
+                    this.resizeCanvas();
+                    this.generateShapes();
+                });
+            }
+
+            resizeCanvas() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            createGradient(x, y, radius, colors) {
+                const gradient = this.ctx.createRadialGradient(x, y, 0, x, y, radius);
+                gradient.addColorStop(0, colors[0] + '80');
+                gradient.addColorStop(0.7, colors[1] + '40');
+                gradient.addColorStop(1, colors[1] + '10');
+                return gradient;
+            }
+
+            generateShapes() {
+                this.shapes = [];
+                const currentPalette = this.gradientPalettes[Math.floor(Math.random() * this.gradientPalettes.length)];
+                const numShapes = Math.floor(Math.random() * 6) + 8; // 8-13 shapes
+                
+                for (let i = 0; i < numShapes; i++) {
+                    const paletteItem = currentPalette[Math.floor(Math.random() * currentPalette.length)];
+                    this.shapes.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        radius: Math.random() * 300 + 150,
+                        colors: paletteItem.colors,
+                        opacity: Math.random() * 0.4 + 0.2,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        pulsePhase: Math.random() * Math.PI * 2,
+                        pulseSpeed: Math.random() * 0.02 + 0.01
+                    });
+                }
+            }
+
+            drawShapes() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Base background
+                const bgGradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, this.canvas.height);
+                bgGradient.addColorStop(0, '#0a0a1f');
+                bgGradient.addColorStop(0.5, '#1a1a3e');
+                bgGradient.addColorStop(1, '#0f0f2a');
+                this.ctx.fillStyle = bgGradient;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Draw gradient shapes
+                this.shapes.forEach(shape => {
+                    const pulse = Math.sin(Date.now() * shape.pulseSpeed + shape.pulsePhase) * 0.3 + 1;
+                    const currentRadius = shape.radius * pulse;
+                    
+                    this.ctx.save();
+                    this.ctx.globalAlpha = shape.opacity;
+                    this.ctx.fillStyle = this.createGradient(shape.x, shape.y, currentRadius, shape.colors);
+                    this.ctx.beginPath();
+                    this.ctx.arc(shape.x, shape.y, currentRadius, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    this.ctx.restore();
+                });
+                
+                // Apply layered blur effect
+                this.ctx.filter = 'blur(40px)';
+                this.ctx.globalCompositeOperation = 'screen';
+                this.ctx.drawImage(this.canvas, 0, 0);
+                this.ctx.filter = 'none';
+                this.ctx.globalCompositeOperation = 'source-over';
+            }
+
+            updateShapes() {
+                this.shapes.forEach(shape => {
+                    shape.x += shape.vx;
+                    shape.y += shape.vy;
+                    
+                    if (shape.x < -shape.radius || shape.x > this.canvas.width + shape.radius) {
+                        shape.vx *= -1;
+                    }
+                    if (shape.y < -shape.radius || shape.y > this.canvas.height + shape.radius) {
+                        shape.vy *= -1;
+                    }
+                    
+                    shape.x = Math.max(-shape.radius/2, Math.min(this.canvas.width + shape.radius/2, shape.x));
+                    shape.y = Math.max(-shape.radius/2, Math.min(this.canvas.height + shape.radius/2, shape.y));
+                });
+            }
+
+            createFloatingParticles() {
+                const particleContainer = document.getElementById('particles');
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const particle = document.createElement('div');
+                        particle.className = 'particle';
+                        particle.style.left = Math.random() * 100 + '%';
+                        particle.style.animationDelay = Math.random() * 8 + 's';
+                        particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                        particleContainer.appendChild(particle);
+                        
+                        setTimeout(() => {
+                            particle.remove();
+                        }, 8000);
+                    }, Math.random() * 2000);
+                }
+                
+                // Recreate particles
+                setTimeout(() => this.createFloatingParticles(), 8000);
+            }
+
+            animate() {
+                this.updateShapes();
+                this.drawShapes();
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Enhanced Links System
         const links = [
             {
                 name: "Note Blog",
@@ -191,7 +519,6 @@
                 url: "/TamTamForum/index.html",
                 domain: "glitch.me"
             }
-          
         ];
 
         function createLinkElement(link) {
@@ -202,10 +529,15 @@
             card.target = "_blank";
             card.rel = "noopener noreferrer";
             
+            const faviconContainer = document.createElement('div');
+            faviconContainer.className = 'favicon-container';
+            
             const favicon = document.createElement('img');
             favicon.className = 'favicon';
             favicon.src = `https://www.google.com/s2/favicons?domain=${link.domain}&sz=128`;
             favicon.alt = `${link.domain} favicon`;
+            
+            faviconContainer.appendChild(favicon);
             
             const textContainer = document.createElement('div');
             const text = document.createElement('div');
@@ -219,7 +551,7 @@
             textContainer.appendChild(text);
             textContainer.appendChild(domain);
             
-            card.appendChild(favicon);
+            card.appendChild(faviconContainer);
             card.appendChild(textContainer);
             li.appendChild(card);
             
@@ -230,12 +562,16 @@
             const container = document.getElementById('linkContainer');
             links.forEach((link, index) => {
                 const element = createLinkElement(link);
-                element.style.animationDelay = `${index * 0.1}s`;
+                element.style.animationDelay = `${index * 0.1 + 0.3}s`;
                 container.appendChild(element);
             });
         }
 
-        document.addEventListener('DOMContentLoaded', initLinks);
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            initLinks();
+            new EnhancedBlurredBackground('backgroundCanvas');
+        });
     </script>
 </body>
 </html>
